@@ -36,6 +36,7 @@ namespace AddressBookProgram
                 Console.WriteLine("A - Add an Address");
                 Console.WriteLine("E - Edit an Address");
                 Console.WriteLine("L - List All Addresses");
+                Console.WriteLine("D - Delete an Aggress");
                 Console.WriteLine("Q - Quit");
             }
 
@@ -92,7 +93,19 @@ namespace AddressBookProgram
                                  a.address, a.city, a.state, a.zip, a.phone, a.email));
                         }
                         break;
-                    case "E":
+                case "D":
+                    Console.WriteLine("Enter Name to Delete: ");
+                    firstName = Console.ReadLine();
+                    if (book.remove(firstName))
+                    {
+                        Console.WriteLine("Address successfully removed");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Address for {0} could not be found.", firstName);
+                    }
+                    break;
+                case "E":
                         Console.WriteLine("Enter Name to Edit: ");
                         firstName = Console.ReadLine();
                         Address addr = book.find(firstName);
