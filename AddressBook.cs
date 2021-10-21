@@ -6,7 +6,6 @@ namespace AddressBookProgram
 {
     class AddressBook
     {
-
         List<Address> addresses;
 
         public AddressBook()
@@ -32,11 +31,38 @@ namespace AddressBookProgram
                 return false;
             }
         }
+
+        public bool remove(string firstname)
+        {
+            Address addr = find(firstname);
+
+            if (addr != null)
+            {
+                addresses.Remove(addr);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void list(Action<Address> action)
+        {
+            addresses.ForEach(action);
+        }
+
+        public bool isEmpty()
+        {
+            return (addresses.Count == 0);
+        }
+
         public Address find(string firstname)
         {
             Address addr = addresses.Find((a) => a.firstname == firstname);
             return addr;
         }
+
 
     }
 }

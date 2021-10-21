@@ -6,6 +6,7 @@ namespace AddressBookProgram
 {
     class AddressPrompt
     {
+
         
             AddressBook book;
 
@@ -33,7 +34,6 @@ namespace AddressBookProgram
                 Console.WriteLine("Main Menu");
                 Console.WriteLine("=========");
                 Console.WriteLine("A - Add an Address");
-                Console.WriteLine("D - Delete an Address");
                 Console.WriteLine("E - Edit an Address");
                 Console.WriteLine("L - List All Addresses");
                 Console.WriteLine("Q - Quit");
@@ -80,8 +80,34 @@ namespace AddressBookProgram
                         }
                         break;
                     
+                    case "L":
+                        if (book.isEmpty())
+                        {
+                            Console.WriteLine("There are no entries.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Addresses:");
+                            book.list((a) => Console.WriteLine("{0} - {7}", a.firstname, a.lastname,
+                                 a.address, a.city, a.state, a.zip, a.phone, a.email));
+                        }
+                        break;
+                    case "E":
+                        Console.WriteLine("Enter Name to Edit: ");
+                        firstName = Console.ReadLine();
+                        Address addr = book.find(firstName);
+                        if (addr == null)
+                        {
+                            Console.WriteLine("Address for {0} count not be found.", firstName);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter new Address: ");
+                            addr.address = Console.ReadLine();
+                            Console.WriteLine("Address updated for {0}", firstName);
+                        }
+                        break;
                 }
-
 
             }
         
